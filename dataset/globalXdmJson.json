@@ -1,0 +1,20 @@
+{
+	"name": "globalXdmJson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "globalXdm.json",
+				"folderPath": "aep",
+				"container": "adobe"
+			}
+		},
+		"schema": {}
+	}
+}
