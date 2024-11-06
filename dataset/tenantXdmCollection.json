@@ -9,7 +9,8 @@
 		"type": "MongoDbAtlasCollection",
 		"schema": [],
 		"typeProperties": {
-			"collection": "tenantXdm"
+			"collection": "tenantXdm",
+			"query": "{\"xdmType\": \"schema\"}"
 		}
 	}
 }
