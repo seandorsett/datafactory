@@ -34,10 +34,7 @@
 				"inputs": [
 					{
 						"referenceName": "tenantXdmCollection",
-						"type": "DatasetReference",
-						"parameters": {
-							"xdmType": "schema"
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
