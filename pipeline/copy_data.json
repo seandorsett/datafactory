@@ -19,7 +19,7 @@
 				}
 			},
 			{
-				"name": "Copy globalXdm",
+				"name": "Copy globalXdm Data",
 				"type": "Copy",
 				"dependsOn": [
 					{
