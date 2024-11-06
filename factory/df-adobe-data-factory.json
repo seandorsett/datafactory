@@ -1,0 +1,9 @@
+{
+	"name": "df-adobe-data-factory",
+	"location": "westus3",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e1dccb63-a8e8-4b00-89e7-7cdbd236e264",
+		"tenantId": "b0d8e6c7-4f51-40f2-b45c-bae4fd843f5b"
+	}
+}
