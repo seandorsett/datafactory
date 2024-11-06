@@ -92,6 +92,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"xdmType": {
+				"type": "String",
+				"defaultValue": "schema"
+			}
+		},
 		"annotations": []
 	}
 }
