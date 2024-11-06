@@ -17,8 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "MongoDbAtlasSource",
-						"batchSize": 100,
-						"filter": "xdmType = \"schema\""
+						"batchSize": 100
 					},
 					"sink": {
 						"type": "JsonSink",
