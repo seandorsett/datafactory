@@ -18,7 +18,7 @@
 					"source": {
 						"type": "MongoDbAtlasSource",
 						"batchSize": 100,
-						"filter": "{xdmType: {$eq:schema)}"
+						"filter": ""
 					},
 					"sink": {
 						"type": "JsonSink",
