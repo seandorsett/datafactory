@@ -10,6 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"collection": "tenantXdm"
-		}
+		},
+		"query": "{ xdmtypes: 'schema' }"
 	}
 }
