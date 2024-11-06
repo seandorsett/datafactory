@@ -18,7 +18,7 @@
 					"source": {
 						"type": "MongoDbAtlasSource",
 						"batchSize": 100,
-						"filter": "\"xdmType\": \"schema\""
+						"filter": "{datetimeData: {$gte: ISODate(\"2018-12-11T00:00:00.000Z\"),$lt: ISODate(\"2018-12-12T00:00:00.000Z\")}, _id: ObjectId(\"5acd7c3d0000000000000000\") }"
 					},
 					"sink": {
 						"type": "JsonSink",
