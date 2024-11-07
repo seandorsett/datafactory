@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "xdmDescriptor.json",
+				"fileName": "xdmDescriptor1.json",
 				"folderPath": "aep",
 				"container": "adobe"
 			}
