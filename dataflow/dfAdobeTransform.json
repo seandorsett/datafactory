@@ -28,10 +28,13 @@
 					"name": "metaClassXdmLookup"
 				},
 				{
-					"name": "select1"
+					"name": "metaClassXdmSelect"
 				},
 				{
 					"name": "otherSelect"
+				},
+				{
+					"name": "union1"
 				}
 			],
 			"scriptLines": [
@@ -83,7 +86,7 @@
 				"          auditable = globalXdm@auditable",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> metaClassXdmSelect",
 				"tenantXdmSplit@other select(mapColumn(",
 				"          {_id},",
 				"          id,",
@@ -96,7 +99,8 @@
 				"          class = title",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> otherSelect"
+				"     skipDuplicateMapOutputs: true) ~> otherSelect",
+				"metaClassXdmSelect, otherSelect union(byName: true)~> union1"
 			]
 		}
 	}
