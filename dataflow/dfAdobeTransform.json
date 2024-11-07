@@ -34,7 +34,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter2"
+				"tenantXdm filter(ERROR_FUNCTION('metaclass=\"https://ms.adobe.com/xdm/content/profile\"')) ~> filter2"
 			]
 		}
 	}
