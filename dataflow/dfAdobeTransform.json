@@ -65,7 +65,7 @@
 					"name": "descriptorSelect"
 				},
 				{
-					"name": "aggregate1"
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -150,8 +150,12 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> descriptorSelect",
-				"behaviorDerivedColumn aggregate() ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
+				"behaviorDerivedColumn join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
