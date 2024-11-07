@@ -145,7 +145,7 @@
 				"          metaclass,",
 				"          class,",
 				"          behavior,",
-				"          {@type}",
+				"          {} = {@type}",
 				"     ),",
 				"     partitionBy('hash', 1)) ~> persistData"
 			]
