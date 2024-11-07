@@ -99,7 +99,7 @@
 				"          metaclass,",
 				"          class = title,",
 				"          each(match(ERROR_FUNCTION('contains(refs[], \"https://ms.adobe.com/xdm/data/record\") -> true')),",
-				"               \"record\" = $$)",
+				"               behavior = $$)",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
