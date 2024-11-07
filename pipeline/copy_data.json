@@ -130,6 +130,8 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy globalXdm Data",
