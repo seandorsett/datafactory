@@ -52,7 +52,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(metaclass==\"https://ms.adobe.com/xdm/content/profile\") ~> filter1"
+				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter1"
 			]
 		}
 	}
