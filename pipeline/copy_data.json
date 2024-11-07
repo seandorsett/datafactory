@@ -95,8 +95,6 @@
 			{
 				"name": "Transform Data",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy xdmDescriptor Data",
@@ -128,6 +126,8 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy globalXdm Data",
