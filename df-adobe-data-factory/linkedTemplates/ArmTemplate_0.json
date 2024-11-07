@@ -287,7 +287,7 @@
 								}
 							}
 						},
-						"@type": {
+						"type": {
 							"type": "string"
 						},
 						"xdm:sourceSchema": {
@@ -313,66 +313,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "MongoDbAtlasSource",
-								"batchSize": 100
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "xdmDescriptorCollection",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "outputJson",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/xdmDescriptorCollection')]",
-				"[concat(variables('factoryId'), '/datasets/outputJson')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/dfAdobeTransform')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -393,6 +333,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "globalXdm"
+						},
+						{
+							"dataset": {
+								"referenceName": "xdmDescriptorJson",
+								"type": "DatasetReference"
+							},
+							"name": "xdmDescriptor"
 						}
 					],
 					"sinks": [
@@ -401,7 +348,11 @@
 								"referenceName": "outputJson",
 								"type": "DatasetReference"
 							},
-							"name": "sink1"
+							"name": "persistTransformedData",
+							"rejectedDataLinkedService": {
+								"referenceName": "AzureBlobStorage",
+								"type": "LinkedServiceReference"
+							}
 						}
 					],
 					"transformations": [
@@ -415,13 +366,25 @@
 							"name": "metaClassXdmSelect"
 						},
 						{
-							"name": "otherSelect"
+							"name": "nonFilteredSelect"
 						},
 						{
 							"name": "mergedtenantXdm"
 						},
 						{
 							"name": "behaviorDerivedColumn"
+						},
+						{
+							"name": "schemaSourceLookup"
+						},
+						{
+							"name": "descriptorSelect"
+						},
+						{
+							"name": "join1"
+						},
+						{
+							"name": "aggregate1"
 						}
 					],
 					"scriptLines": [
@@ -453,8 +416,21 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
 						"     documentForm: 'documentPerLine') ~> globalXdm",
+						"source(output(",
+						"          {_id} as ({$oid} as string),",
+						"          type as string,",
+						"          {xdm:sourceSchema} as string,",
+						"          {xdm:sourceProperty} as string,",
+						"          {xdm:isPrimary} as boolean,",
+						"          descriptorType as string,",
+						"          version as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     documentForm: 'documentPerLine') ~> xdmDescriptor",
 						"tenantXdm split(locate('/xdm/',metaclass) > 0,",
-						"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, other)",
+						"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, nonFilteredMetaClassXdm)",
 						"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
 						"     multiple: false,",
 						"     pickup: 'any',",
@@ -468,7 +444,7 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> metaClassXdmSelect",
-						"tenantXdmSplit@other select(mapColumn(",
+						"tenantXdmSplit@nonFilteredMetaClassXdm select(mapColumn(",
 						"          id,",
 						"          name = title,",
 						"          metaclass,",
@@ -476,28 +452,59 @@
 						"          refs",
 						"     ),",
 						"     skipDuplicateMapInputs: false,",
-						"     skipDuplicateMapOutputs: true) ~> otherSelect",
-						"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-						"mergedtenantXdm derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
-						"behaviorDerivedColumn sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     mapColumn(",
+						"     skipDuplicateMapOutputs: true) ~> nonFilteredSelect",
+						"metaClassXdmSelect, nonFilteredSelect union(byName: true)~> mergedtenantXdm",
+						"descriptorSelect derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
+						"mergedtenantXdm, xdmDescriptor lookup(id == {xdm:sourceSchema},",
+						"     multiple: false,",
+						"     pickup: 'any',",
+						"     broadcast: 'auto')~> schemaSourceLookup",
+						"schemaSourceLookup select(mapColumn(",
 						"          id,",
 						"          name,",
 						"          metaclass,",
 						"          class,",
 						"          refs,",
-						"          behavior",
-						"     )) ~> sink1"
+						"          descriptor = type",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> descriptorSelect",
+						"behaviorDerivedColumn, xdmDescriptor join(descriptor == type,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1 aggregate(groupBy(id,",
+						"          name,",
+						"          metaclass,",
+						"          class,",
+						"          behavior),",
+						"     type = count()) ~> aggregate1",
+						"aggregate1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['output.json'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     saveOrder: 1,",
+						"     outputAssertFailedRows: true,",
+						"     mapColumn(",
+						"          id,",
+						"          name,",
+						"          metaclass,",
+						"          class,",
+						"          behavior,",
+						"          typeCount = type",
+						"     ),",
+						"     partitionBy('hash', 1)) ~> persistTransformedData"
 					]
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/tenantXdmJson')]",
 				"[concat(variables('factoryId'), '/datasets/globalXdmJson')]",
-				"[concat(variables('factoryId'), '/datasets/outputJson')]"
+				"[concat(variables('factoryId'), '/datasets/xdmDescriptorJson')]",
+				"[concat(variables('factoryId'), '/datasets/outputJson')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
 			]
 		},
 		{
@@ -509,8 +516,6 @@
 					{
 						"name": "Copy tenantXdm Data",
 						"type": "Copy",
-						"state": "Inactive",
-						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
@@ -555,8 +560,6 @@
 					{
 						"name": "Copy globalXdm Data",
 						"type": "Copy",
-						"state": "Inactive",
-						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [
 							{
 								"activity": "Copy tenantXdm Data",
@@ -631,8 +634,10 @@
 								"datasetParameters": {
 									"tenantXdm": {},
 									"globalXdm": {},
-									"sink1": {}
-								}
+									"xdmDescriptor": {},
+									"persistTransformedData": {}
+								},
+								"linkedServiceParameters": {}
 							},
 							"staging": {},
 							"compute": {
@@ -645,8 +650,6 @@
 					{
 						"name": "Copy xdmDescriptor Data",
 						"type": "Copy",
-						"state": "Inactive",
-						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [
 							{
 								"activity": "Copy globalXdm Data",
@@ -677,7 +680,69 @@
 									"type": "JsonWriteSettings"
 								}
 							},
-							"enableStaging": false
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['_id']"
+										},
+										"sink": {
+											"path": "$['_id']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['@type']"
+										},
+										"sink": {
+											"path": "type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['xdm:sourceSchema']"
+										},
+										"sink": {
+											"path": "$['xdm:sourceSchema']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['xdm:sourceProperty']"
+										},
+										"sink": {
+											"path": "$['xdm:sourceProperty']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['xdm:isPrimary']"
+										},
+										"sink": {
+											"path": "$['xdm:isPrimary']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['descriptorType']"
+										},
+										"sink": {
+											"path": "$['descriptorType']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['version']"
+										},
+										"sink": {
+											"path": "$['version']"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
 						},
 						"inputs": [
 							{
