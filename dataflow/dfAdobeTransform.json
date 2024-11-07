@@ -150,7 +150,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> descriptorSelect",
-				"behaviorDerivedColumn join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"behaviorDerivedColumn, xdmDescriptor join(descriptor == type,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
