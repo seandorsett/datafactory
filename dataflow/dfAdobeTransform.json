@@ -19,6 +19,10 @@
 					"name": "globalXdm"
 				},
 				{
+					"dataset": {
+						"referenceName": "xdmDescriptorJson",
+						"type": "DatasetReference"
+					},
 					"name": "xdmDescriptor"
 				}
 			],
@@ -88,7 +92,9 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> xdmDescriptor",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> xdmDescriptor",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
 				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, other)",
 				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
@@ -115,7 +121,7 @@
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
 				"mergedtenantXdm derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
-				"behaviorDerivedColumn, xdmDescriptor lookup(id == {xdm:sourceSchema},",
+				"behaviorDerivedColumn, xdmDescriptor lookup(id == ERROR_FUNCTION(''),",
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookup1",
