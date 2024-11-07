@@ -35,7 +35,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(id==\"\") ~> filter2"
+				"tenantXdm filter(metaclass==\"\") ~> filter2"
 			]
 		}
 	}
