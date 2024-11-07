@@ -90,7 +90,6 @@
 				"     documentForm: 'documentPerLine') ~> globalXdm",
 				"source(output(",
 				"          {_id} as ({$oid} as string),",
-				"          {@type} as string,",
 				"          {xdm:sourceSchema} as string,",
 				"          {xdm:sourceProperty} as string,",
 				"          {xdm:isPrimary} as boolean,",

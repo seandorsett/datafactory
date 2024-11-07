@@ -26,9 +26,6 @@
 						}
 					}
 				},
-				"@type": {
-					"type": "string"
-				},
 				"xdm:sourceSchema": {
 					"type": "string"
 				},
