@@ -93,7 +93,7 @@
 				]
 			},
 			{
-				"name": "Data flow1",
+				"name": "Tran",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
@@ -128,7 +128,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Data flow1",
+						"activity": "Tran",
 						"dependencyConditions": [
 							"Succeeded"
 						]
