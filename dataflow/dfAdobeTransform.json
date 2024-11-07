@@ -47,6 +47,9 @@
 				},
 				{
 					"name": "mergedtenantXdm"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -103,7 +106,8 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-				"mergedtenantXdm sink(allowSchemaDrift: true,",
+				"mergedtenantXdm derive() ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
