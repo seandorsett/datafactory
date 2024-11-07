@@ -75,7 +75,7 @@
 				"          xdmType,",
 				"          {_id} = globalXdm@{_id},",
 				"          id = globalXdm@id,",
-				"          title = globalXdm@title,",
+				"          name = globalXdm@title,",
 				"          description = globalXdm@description,",
 				"          auditable = globalXdm@auditable",
 				"     ),",
