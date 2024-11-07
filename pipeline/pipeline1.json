@@ -38,7 +38,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "xdmDescriptorJson",
+						"referenceName": "outputJson",
 						"type": "DatasetReference"
 					}
 				]
