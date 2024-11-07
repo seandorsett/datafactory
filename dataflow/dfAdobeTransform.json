@@ -47,9 +47,6 @@
 				},
 				{
 					"name": "mergedtenantXdm"
-				},
-				{
-					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -105,8 +102,7 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-				"mergedtenantXdm alterRow() ~> alterRow1",
-				"alterRow1 sink(allowSchemaDrift: true,",
+				"mergedtenantXdm sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
