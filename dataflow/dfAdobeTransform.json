@@ -25,7 +25,11 @@
 						"referenceName": "outputJson",
 						"type": "DatasetReference"
 					},
-					"name": "persistData"
+					"name": "persistData",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -42,7 +46,7 @@
 					"name": "otherSelect"
 				},
 				{
-					"name": "union1"
+					"name": "mergedtenantXdm"
 				}
 			],
 			"scriptLines": [
@@ -94,8 +98,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
-				"metaClassXdmSelect, otherSelect union(byName: true)~> union1",
-				"union1 sink(allowSchemaDrift: true,",
+				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
+				"mergedtenantXdm sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     truncate: true,",
