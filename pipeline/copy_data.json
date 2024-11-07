@@ -93,7 +93,7 @@
 				]
 			},
 			{
-				"name": "Tran",
+				"name": "Transform Data",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
@@ -124,11 +124,11 @@
 				}
 			},
 			{
-				"name": "Copy output data to storage",
+				"name": "Copy transformed Data",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Tran",
+						"activity": "Transform Data",
 						"dependencyConditions": [
 							"Succeeded"
 						]
