@@ -176,7 +176,7 @@
 									"path": "$['@type']"
 								},
 								"sink": {
-									"path": "type"
+									"path": "$['descriptorType']"
 								}
 							},
 							{
@@ -186,6 +186,9 @@
 							},
 							{
 								"source": {
+									"path": "$['xdm:sourceProperty']"
+								},
+								"sink": {
 									"path": "$['xdm:sourceProperty']"
 								}
 							},
@@ -202,6 +205,21 @@
 							{
 								"source": {
 									"path": "$['version']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Column_1']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Column_2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Column_3']"
 								}
 							}
 						]
