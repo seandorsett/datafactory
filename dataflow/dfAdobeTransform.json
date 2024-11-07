@@ -22,7 +22,7 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "filter1"
+					"name": "filter2"
 				}
 			],
 			"scriptLines": [
@@ -34,7 +34,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter1"
+				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter2"
 			]
 		}
 	}
