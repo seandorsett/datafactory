@@ -122,10 +122,12 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     outputAssertFailedRows: true) ~> sink1"
+				"     outputAssertFailedRows: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
