@@ -98,7 +98,7 @@
 				"          name = title,",
 				"          metaclass,",
 				"          class = title,",
-				"          each(match(ERROR_FUNCTION('contains(refs, #item==\"https://ms.adobe.com/xdm/data/record\") -> true')),",
+				"          each(match(ERROR_FUNCTION('contains(refs[], \"https://ms.adobe.com/xdm/data/record\") -> true')),",
 				"               \"record\" = $$)",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
