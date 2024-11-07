@@ -112,7 +112,14 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     outputAssertFailedRows: true) ~> sink1"
+				"     outputAssertFailedRows: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          metaclass,",
+				"          class,",
+				"          behavior",
+				"     )) ~> sink1"
 			]
 		}
 	}
