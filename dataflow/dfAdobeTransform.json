@@ -57,6 +57,9 @@
 				},
 				{
 					"name": "behaviorDerivedColumn"
+				},
+				{
+					"name": "lookup1"
 				}
 			],
 			"scriptLines": [
@@ -127,6 +130,10 @@
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
 				"mergedtenantXdm derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
+				"mergedtenantXdm lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1",
 				"behaviorDerivedColumn sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
