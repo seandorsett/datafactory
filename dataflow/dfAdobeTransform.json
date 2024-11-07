@@ -5,12 +5,23 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"dataset": {
+						"referenceName": "tenantXdmJson",
+						"type": "DatasetReference"
+					},
+					"name": "tenantXdm"
+				},
+				{
 					"name": "source1"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> tenantXdm",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false) ~> source1"
 			]
