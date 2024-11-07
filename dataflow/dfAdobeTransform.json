@@ -26,6 +26,9 @@
 				},
 				{
 					"name": "lookup1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -60,7 +63,24 @@
 				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookup1"
+				"     broadcast: 'auto')~> lookup1",
+				"lookup1 select(mapColumn(",
+				"          {_id} = tenantXdmSplit@metaClassXdm@{_id},",
+				"          id = tenantXdmSplit@metaClassXdm@id,",
+				"          type,",
+				"          title = tenantXdmSplit@metaClassXdm@title,",
+				"          auditable = tenantXdmSplit@metaClassXdm@auditable,",
+				"          description = tenantXdmSplit@metaClassXdm@description,",
+				"          metaclass,",
+				"          xdmType,",
+				"          {_id} = globalXdm@{_id},",
+				"          id = globalXdm@id,",
+				"          title = globalXdm@title,",
+				"          description = globalXdm@description,",
+				"          auditable = globalXdm@auditable",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
