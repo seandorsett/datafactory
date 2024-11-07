@@ -47,6 +47,9 @@
 				},
 				{
 					"name": "mergedtenantXdm"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -103,7 +106,16 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-				"mergedtenantXdm sink(allowSchemaDrift: true,",
+				"mergedtenantXdm select(mapColumn(",
+				"          id,",
+				"          name,",
+				"          metaclass,",
+				"          class,",
+				"          refs",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
