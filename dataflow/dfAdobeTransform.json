@@ -52,7 +52,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter1"
+				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> filter1"
 			]
 		}
 	}
