@@ -107,6 +107,8 @@
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_container: 'adobe',",
 				"     mapColumn(",
 				"          id,",
 				"          name,",
