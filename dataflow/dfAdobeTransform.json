@@ -106,7 +106,7 @@
 				"          xdmType,",
 				"          class = title",
 				"     ),",
-				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> union1",
 				"union1 sink(allowSchemaDrift: true,",
