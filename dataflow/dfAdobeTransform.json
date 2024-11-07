@@ -22,9 +22,6 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "tenantXdmMetaClassFilter"
-				},
-				{
 					"name": "split1"
 				}
 			],
@@ -55,8 +52,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> tenantXdmMetaClassFilter",
-				"globalXdm split(ERROR_FUNCTION(''),",
+				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
 				"     disjoint: false) ~> split1@(, )"
 			]
 		}
