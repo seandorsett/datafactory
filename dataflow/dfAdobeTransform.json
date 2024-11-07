@@ -20,17 +20,39 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          {_id} as ({$oid} as string),",
+				"          id as string,",
+				"          type as string,",
+				"          title as string,",
+				"          auditable as boolean,",
+				"          description as string,",
+				"          metaclass as string,",
+				"          xdmType as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> tenantXdm",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          {_id} as ({$oid} as string),",
+				"          id as string,",
+				"          title as string,",
+				"          description as string,",
+				"          auditable as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> globalXdm"
+				"     documentForm: 'documentPerLine') ~> globalXdm",
+				"tenantXdm filter(metaclass==\"\") ~> filter1"
 			]
 		}
 	}
