@@ -19,7 +19,11 @@
 					"name": "globalXdm"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "tenantXdmSplit"
@@ -94,7 +98,11 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-				"mergedtenantXdm derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn"
+				"mergedtenantXdm derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
+				"behaviorDerivedColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
