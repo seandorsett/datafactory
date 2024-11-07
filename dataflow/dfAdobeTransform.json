@@ -106,7 +106,7 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
 				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
-				"mergedtenantXdm derive(name = \"test\") ~> derivedColumn1",
+				"mergedtenantXdm derive(behavior = \"test\") ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
