@@ -15,36 +15,6 @@
 				"container": "adobe"
 			}
 		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"_id": {
-					"type": "object",
-					"properties": {
-						"$oid": {
-							"type": "string"
-						}
-					}
-				},
-				"@type": {
-					"type": "string"
-				},
-				"xdm:sourceSchema": {
-					"type": "string"
-				},
-				"xdm:sourceProperty": {
-					"type": "string"
-				},
-				"xdm:isPrimary": {
-					"type": "boolean"
-				},
-				"descriptorType": {
-					"type": "string"
-				},
-				"version": {
-					"type": "string"
-				}
-			}
-		}
+		"schema": {}
 	}
 }
