@@ -59,7 +59,7 @@
 					"name": "behaviorDerivedColumn"
 				},
 				{
-					"name": "select1"
+					"name": "excludeRefsSelect"
 				}
 			],
 			"scriptLines": [
@@ -135,12 +135,11 @@
 				"          name,",
 				"          metaclass,",
 				"          class,",
-				"          refs,",
 				"          behavior",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> excludeRefsSelect",
+				"excludeRefsSelect sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
