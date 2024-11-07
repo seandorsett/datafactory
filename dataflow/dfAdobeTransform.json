@@ -23,6 +23,9 @@
 			"transformations": [
 				{
 					"name": "split1"
+				},
+				{
+					"name": "lookup1"
 				}
 			],
 			"scriptLines": [
@@ -53,7 +56,11 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
-				"     disjoint: false) ~> split1@(metaClassXdm, other)"
+				"     disjoint: false) ~> split1@(metaClassXdm, other)",
+				"globalXdm lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
 			]
 		}
 	}
