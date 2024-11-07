@@ -21,6 +21,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "outputJson",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -102,7 +106,15 @@
 				"behaviorDerivedColumn sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          metaclass,",
+				"          class,",
+				"          refs,",
+				"          behavior",
+				"     )) ~> sink1"
 			]
 		}
 	}
