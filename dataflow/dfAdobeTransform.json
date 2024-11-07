@@ -59,10 +59,10 @@
 					"name": "behaviorDerivedColumn"
 				},
 				{
-					"name": "lookup1"
+					"name": "schemaSourceLookup"
 				},
 				{
-					"name": "select1"
+					"name": "descriptorSelect"
 				}
 			],
 			"scriptLines": [
@@ -132,12 +132,12 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: true) ~> nonFilteredSelect",
 				"metaClassXdmSelect, nonFilteredSelect union(byName: true)~> mergedtenantXdm",
-				"select1 derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
+				"descriptorSelect derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
 				"mergedtenantXdm, xdmDescriptor lookup(id == {xdm:sourceSchema},",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookup1",
-				"lookup1 select(mapColumn(",
+				"     broadcast: 'auto')~> schemaSourceLookup",
+				"schemaSourceLookup select(mapColumn(",
 				"          id,",
 				"          name,",
 				"          metaclass,",
@@ -146,7 +146,7 @@
 				"          descriptor = type",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> descriptorSelect",
 				"behaviorDerivedColumn sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
