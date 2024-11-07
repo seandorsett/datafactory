@@ -63,6 +63,9 @@
 				},
 				{
 					"name": "descriptorSelect"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -147,7 +150,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> descriptorSelect",
-				"behaviorDerivedColumn sink(allowSchemaDrift: true,",
+				"behaviorDerivedColumn aggregate() ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
