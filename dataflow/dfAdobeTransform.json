@@ -20,7 +20,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -29,7 +33,8 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> globalXdm"
+				"     documentForm: 'documentPerLine') ~> globalXdm",
+				"tenantXdm filter(ERROR_FUNCTION('')) ~> filter1"
 			]
 		}
 	}
