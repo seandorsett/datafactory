@@ -162,7 +162,6 @@
 				"          name,",
 				"          metaclass,",
 				"          class,",
-				"          refs,",
 				"          behavior),",
 				"     type = count()) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
@@ -177,7 +176,8 @@
 				"          name,",
 				"          metaclass,",
 				"          class,",
-				"          behavior",
+				"          behavior,",
+				"          typeCount = type",
 				"     ),",
 				"     partitionBy('hash', 1)) ~> persistTransformedData"
 			]
