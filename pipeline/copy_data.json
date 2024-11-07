@@ -126,8 +126,6 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy globalXdm Data",
@@ -149,11 +147,26 @@
 						"type": "MongoDbAtlasSource",
 						"batchSize": 100
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "xdmDescriptorCollection",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "xdmDescriptorJson",
 						"type": "DatasetReference"
 					}
 				]
