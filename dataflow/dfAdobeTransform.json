@@ -29,6 +29,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "select2"
 				}
 			],
 			"scriptLines": [
@@ -80,7 +83,19 @@
 				"          auditable = globalXdm@auditable",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"tenantXdmSplit@other select(mapColumn(",
+				"          {_id},",
+				"          id,",
+				"          type,",
+				"          title,",
+				"          auditable,",
+				"          description,",
+				"          metaclass,",
+				"          xdmType",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2"
 			]
 		}
 	}
