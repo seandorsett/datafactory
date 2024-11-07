@@ -12,7 +12,11 @@
 					"name": "tenantXdm"
 				},
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "globalXdmJson",
+						"type": "DatasetReference"
+					},
+					"name": "globalXdm"
 				}
 			],
 			"sinks": [],
@@ -23,7 +27,9 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> tenantXdm",
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1"
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> globalXdm"
 			]
 		}
 	}
