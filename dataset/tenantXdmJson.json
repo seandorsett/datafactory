@@ -46,6 +46,12 @@
 				},
 				"xdmType": {
 					"type": "string"
+				},
+				"refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				}
 			}
 		}
