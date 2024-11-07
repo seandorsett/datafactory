@@ -53,7 +53,7 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
-				"     disjoint: false) ~> split1@(, )"
+				"     disjoint: false) ~> split1@(metaClassXdm, other)"
 			]
 		}
 	}
