@@ -1,0 +1,15 @@
+{
+	"name": "xdmDescriptorCollection",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MongoDbAtlas",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MongoDbAtlasCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "xdmDescriptor"
+		}
+	}
+}
