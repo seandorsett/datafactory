@@ -22,7 +22,7 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "filter1"
+					"name": "tenantXdmMetaClassFilter"
 				}
 			],
 			"scriptLines": [
@@ -52,7 +52,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> filter1"
+				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> tenantXdmMetaClassFilter"
 			]
 		}
 	}
