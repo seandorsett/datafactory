@@ -37,6 +37,12 @@
 				},
 				"auditable": {
 					"type": "boolean"
+				},
+				"refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				}
 			}
 		}
