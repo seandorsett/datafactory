@@ -32,7 +32,7 @@
 						"referenceName": "outputJson",
 						"type": "DatasetReference"
 					},
-					"name": "sink1",
+					"name": "persistTransformedData",
 					"rejectedDataLinkedService": {
 						"referenceName": "AzureBlobStorage",
 						"type": "LinkedServiceReference"
@@ -161,7 +161,7 @@
 				"          class,",
 				"          behavior",
 				"     ),",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"     partitionBy('hash', 1)) ~> persistTransformedData"
 			]
 		}
 	}
