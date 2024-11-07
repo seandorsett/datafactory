@@ -50,7 +50,7 @@
 					"name": "metaClassXdmSelect"
 				},
 				{
-					"name": "otherSelect"
+					"name": "nonFilteredSelect"
 				},
 				{
 					"name": "mergedtenantXdm"
@@ -108,7 +108,7 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> xdmDescriptor",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
-				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, other)",
+				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, nonFilteredMetaClassXdm)",
 				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
 				"     multiple: false,",
 				"     pickup: 'any',",
@@ -122,7 +122,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> metaClassXdmSelect",
-				"tenantXdmSplit@other select(mapColumn(",
+				"tenantXdmSplit@nonFilteredMetaClassXdm select(mapColumn(",
 				"          id,",
 				"          name = title,",
 				"          metaclass,",
@@ -130,8 +130,8 @@
 				"          refs",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: true) ~> otherSelect",
-				"metaClassXdmSelect, otherSelect union(byName: true)~> mergedtenantXdm",
+				"     skipDuplicateMapOutputs: true) ~> nonFilteredSelect",
+				"metaClassXdmSelect, nonFilteredSelect union(byName: true)~> mergedtenantXdm",
 				"select1 derive(behavior = iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/record\"), \"Record\", iif(contains(refs,#item==\"https://ms.adobe.com/xdm/data/timeseries\"), \"Time-series\", \"\"))) ~> behaviorDerivedColumn",
 				"mergedtenantXdm, xdmDescriptor lookup(id == {xdm:sourceSchema},",
 				"     multiple: false,",
