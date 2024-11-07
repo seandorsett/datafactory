@@ -112,7 +112,6 @@
 				"          name,",
 				"          metaclass,",
 				"          class,",
-				"          refs,",
 				"          behavior",
 				"     )) ~> sink1"
 			]
