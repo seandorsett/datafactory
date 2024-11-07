@@ -19,7 +19,15 @@
 					"name": "globalXdm"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "outputJson",
+						"type": "DatasetReference"
+					},
+					"name": "persistData"
+				}
+			],
 			"transformations": [
 				{
 					"name": "tenantXdmSplit"
@@ -100,7 +108,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> otherSelect",
-				"metaClassXdmSelect, otherSelect union(byName: true)~> union1"
+				"metaClassXdmSelect, otherSelect union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> persistData"
 			]
 		}
 	}
