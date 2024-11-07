@@ -17,13 +17,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "globalXdm"
-				},
-				{
-					"dataset": {
-						"referenceName": "xdmDescriptorJson",
-						"type": "DatasetReference"
-					},
-					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -88,19 +81,6 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"source(output(",
-				"          {_id} as ({$oid} as string),",
-				"          {@type} as string,",
-				"          {xdm:sourceSchema} as string,",
-				"          {xdm:sourceProperty} as string,",
-				"          {xdm:isPrimary} as boolean,",
-				"          descriptorType as string,",
-				"          version as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> source1",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
 				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, other)",
 				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
