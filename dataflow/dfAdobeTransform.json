@@ -20,11 +20,7 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "filter2"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -34,8 +30,7 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(metaclass==\"\") ~> filter2"
+				"     documentForm: 'documentPerLine') ~> globalXdm"
 			]
 		}
 	}
