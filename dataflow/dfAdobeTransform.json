@@ -57,7 +57,7 @@
 				"     documentForm: 'documentPerLine') ~> globalXdm",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
 				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, other)",
-				"tenantXdmSplit@metaClassXdm lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookup1"
