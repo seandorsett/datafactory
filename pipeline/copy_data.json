@@ -168,36 +168,57 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['_id']['$oid']"
+									"path": "$['_id']"
+								},
+								"sink": {
+									"path": "$['_id']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['@type']"
+								},
+								"sink": {
+									"path": "type"
 								}
 							},
 							{
 								"source": {
+									"path": "$['xdm:sourceSchema']"
+								},
+								"sink": {
 									"path": "$['xdm:sourceSchema']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['xdm:sourceProperty']"
+								},
+								"sink": {
+									"path": "$['xdm:sourceProperty']"
 								}
 							},
 							{
 								"source": {
+									"path": "$['xdm:isPrimary']"
+								},
+								"sink": {
 									"path": "$['xdm:isPrimary']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['descriptorType']"
+								},
+								"sink": {
+									"path": "$['descriptorType']"
 								}
 							},
 							{
 								"source": {
+									"path": "$['version']"
+								},
+								"sink": {
 									"path": "$['version']"
 								}
 							}
