@@ -124,7 +124,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy output data to storage",
 				"type": "Copy",
 				"dependsOn": [
 					{
