@@ -5,6 +5,8 @@
 			{
 				"name": "Copy tenantXdm Data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -47,6 +49,8 @@
 			{
 				"name": "Copy globalXdm Data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy tenantXdm Data",
@@ -95,6 +99,8 @@
 			{
 				"name": "Transform Data",
 				"type": "ExecuteDataFlow",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy xdmDescriptor Data",
@@ -126,8 +132,6 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy globalXdm Data",
