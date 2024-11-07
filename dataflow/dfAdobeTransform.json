@@ -23,6 +23,9 @@
 			"transformations": [
 				{
 					"name": "tenantXdmMetaClassFilter"
+				},
+				{
+					"name": "split1"
 				}
 			],
 			"scriptLines": [
@@ -52,7 +55,9 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> globalXdm",
-				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> tenantXdmMetaClassFilter"
+				"tenantXdm filter(locate('/xdm/',metaclass) > 0) ~> tenantXdmMetaClassFilter",
+				"globalXdm split(ERROR_FUNCTION(''),",
+				"     disjoint: false) ~> split1@(, )"
 			]
 		}
 	}
