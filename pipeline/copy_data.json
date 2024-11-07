@@ -162,7 +162,50 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['@type']"
+								},
+								"sink": {
+									"path": "type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['xdm:sourceSchema']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['xdm:sourceProperty']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['xdm:isPrimary']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['descriptorType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['version']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
