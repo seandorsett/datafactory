@@ -31,7 +31,7 @@
 					"name": "select1"
 				},
 				{
-					"name": "select2"
+					"name": "otherSelect"
 				}
 			],
 			"scriptLines": [
@@ -96,7 +96,7 @@
 				"          class = title",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select2"
+				"     skipDuplicateMapOutputs: true) ~> otherSelect"
 			]
 		}
 	}
