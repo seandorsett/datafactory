@@ -103,7 +103,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Copy xdmDescriptor Data",
+						"activity": "Copy globalXdm Data",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -128,54 +128,6 @@
 					},
 					"traceLevel": "Fine"
 				}
-			},
-			{
-				"name": "Copy xdmDescriptor Data",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Copy globalXdm Data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "MongoDbAtlasSource",
-						"batchSize": 100
-					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "xdmDescriptorCollection",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "xdmDescriptorJson",
-						"type": "DatasetReference"
-					}
-				]
 			}
 		],
 		"annotations": []
