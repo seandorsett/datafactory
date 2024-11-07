@@ -168,52 +168,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['_id']['$oid']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['@type']"
-								},
-								"sink": {
-									"path": "$['descriptorType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['xdm:sourceSchema']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['xdm:sourceProperty']"
-								},
-								"sink": {
-									"path": "$['xdm:sourceProperty']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['xdm:isPrimary']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['descriptorType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['version']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Column_1']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['Column_2']"
 								}
 							},
