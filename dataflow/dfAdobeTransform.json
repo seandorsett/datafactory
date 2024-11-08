@@ -65,10 +65,10 @@
 					"name": "descriptorSelect"
 				},
 				{
-					"name": "join1"
+					"name": "joinXdmDescriptor"
 				},
 				{
-					"name": "aggregate1"
+					"name": "aggregate"
 				}
 			],
 			"scriptLines": [
@@ -157,14 +157,14 @@
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1",
-				"join1 aggregate(groupBy(id,",
+				"     broadcast: 'auto')~> joinXdmDescriptor",
+				"joinXdmDescriptor aggregate(groupBy(id,",
 				"          name,",
 				"          metaclass,",
 				"          class,",
 				"          behavior),",
-				"     type = count()) ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
+				"     type = count()) ~> aggregate",
+				"aggregate sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
