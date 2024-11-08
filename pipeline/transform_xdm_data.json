@@ -47,8 +47,6 @@
 			{
 				"name": "Copy globalXdm Data",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy tenantXdm Data",
@@ -130,8 +128,6 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy globalXdm Data",
