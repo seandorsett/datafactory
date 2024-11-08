@@ -24,9 +24,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "xdmDescriptor"
-				},
-				{
-					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -116,8 +113,6 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> xdmDescriptor",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
 				"tenantXdm split(locate('/xdm/',metaclass) > 0,",
 				"     disjoint: false) ~> tenantXdmSplit@(metaClassXdm, nonFilteredMetaClassXdm)",
 				"tenantXdmSplit@metaClassXdm, globalXdm lookup(metaclass == globalXdm@id,",
