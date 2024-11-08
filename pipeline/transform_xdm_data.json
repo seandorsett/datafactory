@@ -47,14 +47,7 @@
 			{
 				"name": "Copy globalXdm Data",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Copy tenantXdm Data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -103,6 +96,18 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Copy tenantXdm Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy globalXdm Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -128,14 +133,7 @@
 			{
 				"name": "Copy xdmDescriptor Data",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Copy globalXdm Data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
