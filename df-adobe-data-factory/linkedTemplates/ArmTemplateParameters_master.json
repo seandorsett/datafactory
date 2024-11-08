@@ -11,6 +11,9 @@
 		"MongoDbAtlas_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
 		"MongoDbAtlas_properties_typeProperties_database": {
 			"value": "demo"
 		},

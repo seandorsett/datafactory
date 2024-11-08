@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MongoDbAtlas'"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"MongoDbAtlas_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "demo"
@@ -51,6 +55,9 @@
 					},
 					"MongoDbAtlas_connectionString": {
 						"value": "[parameters('MongoDbAtlas_connectionString')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
 					"MongoDbAtlas_properties_typeProperties_database": {
 						"value": "[parameters('MongoDbAtlas_properties_typeProperties_database')]"
