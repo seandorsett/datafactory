@@ -68,7 +68,7 @@
 					"name": "joinXdmDescriptor"
 				},
 				{
-					"name": "aggregate"
+					"name": "aggregateType"
 				}
 			],
 			"scriptLines": [
@@ -163,8 +163,8 @@
 				"          metaclass,",
 				"          class,",
 				"          behavior),",
-				"     type = count()) ~> aggregate",
-				"aggregate sink(allowSchemaDrift: true,",
+				"     type = count()) ~> aggregateType",
+				"aggregateType sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
