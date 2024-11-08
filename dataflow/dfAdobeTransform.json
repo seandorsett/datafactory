@@ -169,7 +169,7 @@
 				"     partitionFileNames:['output.json'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1,",
+				"     saveOrder: 0,",
 				"     outputAssertFailedRows: true,",
 				"     mapColumn(",
 				"          id,",
