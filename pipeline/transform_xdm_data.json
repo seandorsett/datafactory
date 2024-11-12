@@ -234,7 +234,14 @@
 			{
 				"name": "Azure Function1",
 				"type": "AzureFunctionActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Transform Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
