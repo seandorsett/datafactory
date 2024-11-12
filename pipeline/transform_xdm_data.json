@@ -232,24 +232,20 @@
 				]
 			},
 			{
-				"name": "Azure Function1",
-				"type": "AzureFunctionActivity",
-				"dependsOn": [
-					{
-						"activity": "Transform Data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
 				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"annotations": []
