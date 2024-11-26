@@ -76,20 +76,32 @@
 							{
 								"source": {
 									"path": "$['description']"
+								},
+								"sink": {
+									"path": "$['description']"
 								}
 							},
 							{
 								"source": {
+									"path": "$['metaclass']"
+								},
+								"sink": {
 									"path": "$['metaclass']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['xdmType']"
+								},
+								"sink": {
+									"path": "$['xdmType']"
 								}
 							},
 							{
 								"source": {
+									"path": "$['refs']"
+								},
+								"sink": {
 									"path": "$['refs']"
 								}
 							}
