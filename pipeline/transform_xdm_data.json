@@ -96,6 +96,14 @@
 								"sink": {
 									"path": "$['xdmType']"
 								}
+							},
+							{
+								"source": {
+									"path": "$['refs']"
+								},
+								"sink": {
+									"path": "$['refs']"
+								}
 							}
 						],
 						"collectionReference": ""
