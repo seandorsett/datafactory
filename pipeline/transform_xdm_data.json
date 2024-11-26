@@ -77,6 +77,11 @@
 								"source": {
 									"path": "$['refs'][0]"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Column_1']"
+								}
 							}
 						],
 						"collectionReference": ""
