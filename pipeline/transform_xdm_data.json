@@ -29,7 +29,73 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								},
+								"sink": {
+									"path": "$['_id']['$oid']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"path": "$['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['type']"
+								},
+								"sink": {
+									"path": "$['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['title']"
+								},
+								"sink": {
+									"path": "$['title']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['auditable']"
+								},
+								"sink": {
+									"path": "$['auditable']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['metaclass']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['xdmType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['refs']"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
