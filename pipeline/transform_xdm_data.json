@@ -29,7 +29,61 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['title']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['auditable']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['metaclass']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['xdmType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['refs']"
+								},
+								"sink": {
+									"path": "$['refs']"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
