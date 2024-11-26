@@ -35,7 +35,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['Column_2']"
+									"path": "$['refs']"
 								}
 							}
 						]
