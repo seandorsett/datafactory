@@ -36,6 +36,9 @@
 							{
 								"source": {
 									"path": "$['refs']"
+								},
+								"sink": {
+									"path": ""
 								}
 							}
 						]
