@@ -283,11 +283,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"test": {
-				"type": "String"
-			}
-		},
 		"annotations": []
 	}
 }
